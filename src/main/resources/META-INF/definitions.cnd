@@ -9,7 +9,7 @@
 
 [jnt:customSearchForm] > jnt:content, mix:title, jmix:queryContent
  - nodeType (string,choicelist[nodetypes=nt:base,resourceBundle]) indexed=no
- - pathType (string, choicelist) indexed=no < all, sites,  currentsite, pages, currentpage, custom
+ - pathType (string, choicelist[resourceBundle]) indexed=no < all, sites,  currentsite, pages, currentpage, custom
  - path (weakreference) < jnt:content
  - result (weakreference) < jnt:page
 
