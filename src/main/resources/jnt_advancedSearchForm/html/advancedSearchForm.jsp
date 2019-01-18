@@ -14,6 +14,7 @@
         	if (field.type == 'checkbox') {
         		if (field.name.indexOf('siteContent') != -1) {
                     document.getElementById('search-pages-criteria').style.display = field.checked ? '' : 'none';
+                    document.getElementById('excludeFileReferences-area').style.display = field.checked ? '' : 'none';
         		}
         		if (field.name.indexOf('files') != -1) {
                     document.getElementById('search-documents-criteria').style.display = field.checked ? '' : 'none';
@@ -23,6 +24,7 @@
             	while(o=field.options[i++]){
             		if (o.value == 'siteContent') {
             			document.getElementById('search-pages-criteria').style.display = o.selected ? '' : 'none';
+            			document.getElementById('excludeFileReferences-area').style.display = o.selected ? '' : 'none';
             		}
             		if (o.value == 'files') {
             			document.getElementById('search-documents-criteria').style.display = o.selected ? '' : 'none';
@@ -47,11 +49,15 @@
 <div id="advancedSearch">
     <div>
         <c:url value='${url.base}${renderContext.mainResource.node.path}.html' var="searchUrl"/>
-        <s:form name="advancedSearchForm" class="Form advancedSearchForm" method="post" action="${searchUrl}">
+        <s:form name="advancedSearchForm" class="Form advancedSearchForm" method="get" action="${searchUrl}">
             <fieldset>
                 <legend><fmt:message key="search.advancedSearch.criteria.text.title"/></legend>
                 <p><label class="left" for="searchTerm"><fmt:message key="search"/></label>&nbsp;<s:termMatch selectionOptions="all_words,exact_phrase,any_word,as_is"/>&nbsp;<s:term id="searchTerm"/></p>
                 <p><label class="left" for="searchFields"><fmt:message key="searchForm.term.searchIn"/></label>&nbsp;<s:termFields id="searchFields" onchange="toggleSearchMode(this)"/></p>
+                <p id="excludeFileReferences-area" style="display: ${param['src_terms[0].fields.siteContent'] == 'false' ? 'none' : ''}">
+                    <label class="left">&nbsp;</label>&nbsp;
+                    <s:excludeFileReferences display="true" id="excludeFileReferences"/><label for="excludeFileReferences"><fmt:message key="searchForm.excludeFileReferences"/></label>
+                </p>
             </fieldset>
             <fieldset>
                 <legend><fmt:message key="search.advancedSearch.criteria.authorAndDate.title"/></legend>
