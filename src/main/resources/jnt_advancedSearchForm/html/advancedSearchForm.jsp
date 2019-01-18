@@ -49,7 +49,7 @@
 <div id="advancedSearch">
     <div>
         <c:url value='${url.base}${renderContext.mainResource.node.path}.html' var="searchUrl"/>
-        <s:form name="advancedSearchForm" class="Form advancedSearchForm" method="get" action="${searchUrl}">
+        <s:form name="advancedSearchForm" class="Form advancedSearchForm" method="post" action="${searchUrl}">
             <fieldset>
                 <legend><fmt:message key="search.advancedSearch.criteria.text.title"/></legend>
                 <p><label class="left" for="searchTerm"><fmt:message key="search"/></label>&nbsp;<s:termMatch selectionOptions="all_words,exact_phrase,any_word,as_is"/>&nbsp;<s:term id="searchTerm"/></p>
